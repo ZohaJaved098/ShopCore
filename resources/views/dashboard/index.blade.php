@@ -12,18 +12,16 @@
                 Dashboard
             </p>
         </div>
-        {{-- <div class="flex flex-col gap-5"> --}}
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-5">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mb-5">
 
-                <x-profile-stat title="Total Products" :count="$products" />
-                <x-profile-stat title="Total Blogs" :count="$blogs" />
-                <x-profile-stat title="Total Users" :count="$users" />
-                <x-profile-stat title="Total Managers" :count="$managers" />
-            </div>
+            <x-profile-stat title="Total Products" :count="$products" />
+            <x-profile-stat title="Total Blogs" :count="$blogs" />
+            <x-profile-stat title="Total Users" :count="$users" />
+            <x-profile-stat title="Total Managers" :count="$managers" />
+        </div>
 
-            {{--
-        </div> --}}
+
         <x-line :black="true" />
 
         @if(auth()->user()->hasRole('admin'))

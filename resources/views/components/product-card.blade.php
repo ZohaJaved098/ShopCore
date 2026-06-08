@@ -8,7 +8,7 @@
             </div>
         @endif
 
-        <div class="flex flex-col gap-5">
+        <div class="flex flex-col gap-5 ml-5 mt-6">
             <h3 class="text-xl  font-bold text-emerald-600 tracking-wider capitalize">
                 {{ $product->name }}
             </h3>

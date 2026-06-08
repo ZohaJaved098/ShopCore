@@ -167,35 +167,40 @@
 
 
                     </div>
-                    <div class="mt-10">
+                    @if (
+                            $user->blogs->count()
+                        )
+                        <div class="mt-10">
 
-                        <x-title>Blog Insights</x-title>
+                            <x-title>Blog Insights</x-title>
 
-                        <div class="mt-5 flex flex-col gap-3">
+                            <div class="mt-5 flex flex-col gap-3">
 
-                            @foreach($user->blogs as $blog)
+                                @foreach($user->blogs as $blog)
 
-                                <a href="blogs/{{ $blog->id }}"
-                                    class="flex justify-between items-center p-3 border border-emerald-400 shadow hover:shadow-2xl group hover:border-2 cursor-pointer rounded-lg">
+                                    <a href="blogs/{{ $blog->id }}"
+                                        class="flex justify-between items-center p-3 border border-emerald-400 shadow hover:shadow-2xl group hover:border-2 cursor-pointer rounded-lg">
 
-                                    <p
-                                        class="font-semibold capitalize text-emerald-600 group-hover:text-emerald-700 group-hover:font-bold">
-                                        {{ $blog->title }}
-                                    </p>
+                                        <p
+                                            class="font-semibold capitalize text-emerald-600 group-hover:text-emerald-700 group-hover:font-bold">
+                                            {{ $blog->title }}
+                                        </p>
 
-                                    <div class="flex items-center gap-3 text-sm text-emerald-700">
+                                        <div class="flex items-center gap-3 text-sm text-emerald-700">
 
-                                        <span>
-                                            {{ $blog->favoritedBy->count() }}
-                                        </span>
-                                        <x-heroicon-s-heart class="w-5 h-5 text-pink-600" />
-                                    </div>
-                                </a>
+                                            <span>
+                                                {{ $blog->favoritedBy->count() }}
+                                            </span>
+                                            <x-heroicon-s-heart class="w-5 h-5 text-pink-600" />
+                                        </div>
+                                    </a>
 
-                            @endforeach
+                                @endforeach
 
+                            </div>
                         </div>
-                    </div>
+
+                    @endif
                 @endcan
 
             </div>

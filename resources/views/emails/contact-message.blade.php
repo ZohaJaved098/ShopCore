@@ -1,8 +1,8 @@
-<h2>New Contact Message</h2>
+<h2>New Contact Message from <x-logo /> </h2>
 
 <p><strong>From:</strong> {{ $data['email'] }}</p>
-<p><strong>Subject:</strong> {{ $data['subject'] }}</p>
+<p class="capitalize"><strong>Subject:</strong> {{ $data['subject'] }}</p>
 
-<hr>
+<x-line :black="true" />
 
-<p>{{ $data['message'] }}</p>
+<p class=" text-pretty ">{{ $data['message'] }}</p>

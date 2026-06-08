@@ -34,7 +34,7 @@
         ['label' => 'Profile', 'url' => 'profile', 'solidIcon' => 'heroicon-s-user', 'outlinedIcon' => 'heroicon-o-user'],
         // ['label' => 'Dashboard', 'url' => 'dashboard', 'solidIcon' => 'heroicon-s-chart-bar', 'outlinedIcon' => 'heroicon-o-chart-bar'],
     ]">
-                <x-avatar :small="true" />
+                <x-avatar :user="auth()->user()" :small="true" />
 
                 <p class="text-xs text-emerald-700 font-light group-hover:text-emerald-400">
                     {{ auth()->user()->name }}
@@ -53,9 +53,12 @@
             {{ $slot }}
         </main>
     </div>
+    <footer class="flex items-center justify-center text-black w-full border-t-2 border-t-emerald-700 p-2 ">
+        <p>
+            Created for practice
+        </p>
 
-    {{-- <x-footer /> --}}
-
+    </footer>
 
 </body>
 

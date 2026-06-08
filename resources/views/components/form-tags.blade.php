@@ -17,86 +17,55 @@
         class="w-full placeholder:text-emerald-300 focus:outline-emerald-900 border-2 border-emerald-400 p-2 rounded-md" />
     <div id="selectedTags" class="flex flex-wrap gap-2"></div>
 </div>
+{{-- tags management --}}
 <script>
     const tagsInput = document.getElementById('tagsInput');
     const selectedTags = document.getElementById('selectedTags');
 
-
     function normalizeTags(value) {
-
         return value
             .split(',')
             .map(tag => tag.trim().toLowerCase())
             .filter(tag => tag !== '');
     };
 
-
     function renderTags() {
-
         const tags = normalizeTags(tagsInput.value);
-
         selectedTags.innerHTML = '';
 
         tags.forEach(tag => {
-
             const div = document.createElement('button');
-
             div.type = 'button';
-
             div.className =
                 'px-3 py-1 rounded-md bg-emerald-700 text-white text-sm hover:bg-red-600 transition';
-
             div.innerText = tag + ' ✕';
 
-
             div.addEventListener('click', () => {
-
                 const updatedTags = tags.filter(t => t !== tag);
-
                 tagsInput.value = updatedTags.join(', ');
-
                 if (updatedTags.length > 0) {
                     tagsInput.value += ', ';
                 }
-
                 renderTags();
             });
-
-
             selectedTags.appendChild(div);
         });
     }
 
     function addTag(tagName) {
-
         tagName = tagName.toLowerCase();
-
         let tags = normalizeTags(tagsInput.value);
-
-
         // prevent duplicates
         if (tags.includes(tagName)) {
             alert('Tag already exists in input');
             return;
         }
-
-
         tags.push(tagName);
-
-
         tagsInput.value = tags.join(', ') + ', ';
-
-
         renderTags();
-
-
         tagsInput.focus();
     }
-
-
     tagsInput.addEventListener('input', renderTags);
-
-
     renderTags();
 
 </script>

@@ -1,9 +1,7 @@
 <footer class="w-full mt-auto border-t-4 border-emerald-500 px-5 py-10 mb-10 flex flex-col md:flex-row gap-8">
-
-    <!-- Logo -->
-    <div class="md:w-1/3 w-full flex flex-col">
+    <div class="md:w-1/3 w-full flex flex-col gap-5">
         <x-logo />
-        <div class="flex flex-col mt-auto">
+        <div class="flex flex-col mt-auto ">
             <h3 class="font-semibold mb-2">Our Socials</h3>
             <div class="flex gap-5">
                 <x-nav-link info="Facebook">
@@ -24,10 +22,9 @@
         </div>
     </div>
 
-    <!-- Links Section -->
+
     <div class="md:w-1/3 w-full grid grid-cols-2  gap-6 text-left">
 
-        <!-- Our Company -->
         <div>
             <h3 class="font-semibold mb-2">Our Company</h3>
             <div class="flex flex-col gap-1 items-start">
@@ -39,7 +36,6 @@
             </div>
         </div>
 
-        <!-- Legal -->
         <div>
             <h3 class="font-semibold mb-2">Legal</h3>
             <div class="flex flex-col gap-1 items-start">
@@ -52,7 +48,7 @@
             </div>
         </div>
 
-        <!-- Customer Support -->
+
         <div>
             <h3 class="font-semibold mb-2 text-nowrap">Customer Support</h3>
             <div class="flex flex-col gap-1 items-start">
@@ -63,7 +59,7 @@
             </div>
         </div>
 
-        <!-- Business -->
+
         <div>
             <h3 class="font-semibold mb-2">Business</h3>
             <div class="flex flex-col gap-1 items-start">
@@ -72,23 +68,34 @@
         </div>
 
     </div>
-
-    <!-- Contact -->
     <div class="md:w-1/3 w-full">
-        <h3 class="font-semibold mb-2">Contact</h3>
-        <form method="POST" action="/contact/send" class="flex flex-col gap-2">
-            @csrf
+        @php
+            $user = auth()->user();
+        @endphp
 
-            <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+        <x-form action="/contact/send">
+            <h3 class="font-semibold mb-2">Message Administration</h3>
 
-            <input type="text" name="subject" placeholder="Subject" class="border p-2 rounded" required>
+            @auth
+                <input type="hidden" name="email" value="{{ $user->email }}">
+                <x-form-input type="text" name="subject" placeholder="Subject" />
 
-            <textarea name="message" placeholder="Your message" class="border p-2 rounded" required></textarea>
+                <textarea name="message" placeholder="Your message" required
+                    class="p-3 rounded-lg bg-white mb-5 outline outline-emerald-300"></textarea>
 
-            <button class="bg-emerald-500 text-white px-4 py-2 rounded">
-                Send
-            </button>
-        </form>
+                <x-form-btn>
+                    Send
+                </x-form-btn>
+            @else
+                <div class="flex gap-4 justify-center items-center">
+                    <p>Please login to send a message</p>
+                    <x-nav-link href="/login" info="Login">
+                        <x-heroicon-o-arrow-right-on-rectangle class="text-emerald-700 hover:text-emerald-400 w-8 h-8 " />
+                    </x-nav-link>
+                </div>
+            @endauth
+        </x-form>
+
     </div>
 
 </footer>

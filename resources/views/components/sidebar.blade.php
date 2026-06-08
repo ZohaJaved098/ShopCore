@@ -26,7 +26,7 @@
 
     </div>
     {{-- <div>
-
+        more settings
     </div> --}}
 
 </div>
