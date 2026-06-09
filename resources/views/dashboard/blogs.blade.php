@@ -30,7 +30,7 @@
                             </td>
 
                             <td class="p-3">
-                                {{ $blog->user->name ?? 'Unknown' }}
+                                {{ $blog->author->name ?? 'Unknown' }}
                             </td>
 
                             <td class="p-3">

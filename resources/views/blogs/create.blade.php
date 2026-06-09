@@ -12,6 +12,7 @@
                 <div class="flex items-center w-full gap-5">
                     <x-label name="title" title="Title of Blog" />
                     <x-form-input name="title" type="text" />
+                    <x-error-msg field="title" />
                 </div>
                 <x-line :black="true" />
                 <div class="flex flex-col items-start justify-start gap-5">
@@ -21,6 +22,7 @@
                 <div class="flex items-start justify-between">
                     <div class="flex flex-col ">
                         <x-label name="header_image" title="Header Image" />
+                        <x-error-msg field="header_image" />
                         <p class="text-emerald-800 text-md font-light">File must be jpeg/jpg format and mustn't exceed
                             2MB
                         </p>
@@ -34,8 +36,11 @@
 
                 <x-line :black="true" />
                 <x-label name="content" title="Content of Blog" />
+                <x-error-msg field="content" />
                 <textarea name="content" placeholder="Write here" rows="5"
-                    class="w-full h-full mt-2 placeholder:text-emerald-800 text-black outline outline-emerald-300 rounded-lg p-3"></textarea>
+                    class="w-full h-full mt-2 placeholder:text-emerald-800 text-black outline outline-emerald-300 rounded-lg p-3">
+                {{ old('content') }}</textarea>
+
             </div>
             <x-line :black="true" />
             <x-form-btn>Create</x-form-btn>

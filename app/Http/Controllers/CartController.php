@@ -39,10 +39,17 @@ class CartController extends Controller
     }
 
     // REMOVE ITEM
-    public function remove(Cart $cart)
+    public function remove(Product $product)
+    {
+        Cart::where('user_id', auth()->id())
+            ->where('product_id', $product->id)
+            ->delete();
+
+        return back();
+    }
+    public function destroy(Cart $cart)
     {
         $cart->delete();
-
         return back();
     }
 

@@ -34,7 +34,7 @@
                             </x-btn>
 
                             <form method="POST" id="remove-form-{{$item->id}}" name="remove-form" hidden
-                                action="/cart/remove/{{ $item->id }}">
+                                action="/cart/delete/{{ $item->id }}">
                                 @csrf
                             </form>
                         </div>
@@ -119,8 +119,6 @@
             </div>
         @endif
 
-
-        {{-- ADDED SIMPLE CHECKOUT MODAL --}}
         <div x-show="open" x-cloak class="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
 
             <div class="bg-white p-10 rounded-lg w-11/12 md:w-1/2">
@@ -176,8 +174,6 @@
 
                     <form hidden id="checkout" action="/checkout" method="POST">
                         @csrf
-
-
                     </form>
 
                 </div>

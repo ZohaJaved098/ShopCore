@@ -18,52 +18,8 @@ Route::get('/', [BlogController::class, 'featured']);
 Route::get('blogs', [BlogController::class, 'index']);
 Route::get('products', [ProductController::class, 'index']);
 
-// authenticated
-Route::middleware('auth')->group(function () {
-
-    Route::get('/profile', [UserController::class, 'profile']);
-    Route::patch('/profile', [UserController::class, 'update']);
-    Route::delete('/user', [UserController::class, 'delete']);
-
-
-    Route::middleware('can:access-dashboard')->group(function () {
-        Route::get('/dashboard', [UserController::class, 'dashboard']);
-        Route::get('/dashboard/blogs', [UserController::class, 'blogsDashboard']);
-        Route::get('/dashboard/products', [UserController::class, 'productsDashboard']);
-        Route::get('/dashboard/users', [UserController::class, 'usersDashboard']);
-        Route::patch('/users/{user}/make-manager', [UserController::class, 'makeManager']);
-        Route::patch('/users/{user}/make-user', [UserController::class, 'makeUser']);
-    });
-
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-    Route::post('/cart/remove/{cart}', [CartController::class, 'remove'])->name('cart.remove');
-    Route::patch('/cart/{cart}/quantity', [CartController::class, 'update']);
-
-    Route::get('/wishlist', [WishlistController::class, 'index']);
-    Route::post('/wishlist/add/{product}', [WishlistController::class, 'store']);
-    Route::delete('/wishlist/{wishlist}', [WishlistController::class, 'destroy']);
-    Route::delete('/wishlist/remove/{product}', [WishlistController::class, 'removeByProduct']);
-
-    Route::get('/orders', [OrderController::class, 'index']);
-    Route::post('/checkout', [OrderController::class, 'store']);
-
-    Route::resource('blogs', BlogController::class)->except('index');
-    Route::resource('products', ProductController::class)
-        ->except('index')
-        ->middleware('can:manage-products');
-
-
-    Route::get('/favorite-blogs', [FavoriteBlogController::class, 'index']);
-    Route::post('/favorite-blogs/{blog}', [FavoriteBlogController::class, 'store']);
-    Route::delete('/favorite-blogs/{blog}', [FavoriteBlogController::class, 'destroy']);
-
-    Route::post('/contact/send', [ContactController::class, 'send']);
-
-});
 Route::get('/authors', [BlogController::class, 'authors']);
 
-// ADDED FOOTER PAGES
 Route::view('/about-us', 'pages.about');
 Route::view('/careers', 'pages.careers');
 Route::view('/our-team', 'pages.team');
@@ -95,4 +51,52 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'store']);
 });
 
-Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
+
+
+
+// authenticated
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::patch('/profile', [UserController::class, 'update']);
+
+    Route::delete('/user', [UserController::class, 'delete']);
+
+
+    Route::middleware('can:access-dashboard')->group(function () {
+        Route::get('/dashboard', [UserController::class, 'dashboard']);
+        Route::get('/dashboard/blogs', [UserController::class, 'blogsDashboard']);
+        Route::get('/dashboard/products', [UserController::class, 'productsDashboard']);
+        Route::get('/dashboard/users', [UserController::class, 'usersDashboard']);
+        Route::patch('/users/{user}/make-manager', [UserController::class, 'makeManager']);
+        Route::patch('/users/{user}/make-user', [UserController::class, 'makeUser']);
+    });
+
+    Route::resource('products', ProductController::class)
+        ->except('index')
+        ->middleware('can:manage-products');
+
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart/add/{product}', [CartController::class, 'add']);
+    Route::post('/cart/remove/{product}', [CartController::class, 'remove']);
+    Route::post('/cart/delete/{cart}', [CartController::class, 'destroy']);
+    Route::patch('/cart/{cart}/quantity', [CartController::class, 'update']);
+
+    Route::get('/wishlist', [WishlistController::class, 'index']);
+    Route::post('/wishlist/add/{product}', [WishlistController::class, 'store']);
+    Route::delete('/wishlist/{wishlist}', [WishlistController::class, 'destroy']);
+    Route::delete('/wishlist/remove/{product}', [WishlistController::class, 'removeByProduct']);
+
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::post('/checkout', [OrderController::class, 'store']);
+
+    Route::resource('blogs', BlogController::class)->except('index');
+
+    Route::get('/favorite-blogs', [FavoriteBlogController::class, 'index']);
+    Route::post('/favorite-blogs/{blog}', [FavoriteBlogController::class, 'store']);
+    Route::delete('/favorite-blogs/{blog}', [FavoriteBlogController::class, 'destroy']);
+
+    Route::post('/contact/send', [ContactController::class, 'send']);
+
+});

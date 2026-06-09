@@ -15,17 +15,6 @@
                 By {{ $blog->author->name }}
             </p>
         </div>
-        <div class="flex justify-end items-end gap-2 ">
-
-            @auth
-                @if ($view)
-                    <x-btn title="View" type="a" href="/blogs/{{$blog->id}}">
-                        <x-heroicon-s-eye class="w-5 h-5 text-white" />
-                    </x-btn>
-                @endif
-                <x-favblog-btn :data="$blog->id" />
-            @endauth
-        </div>
         @if ($blog->featured)
             <span
                 class="absolute top-0 left-0 rounded-br-lg rounded-tl-lg  py-2 px-5 font-bold text-white bg-emerald-800 cursor-default ">Featured</span>
@@ -33,7 +22,6 @@
     </div>
     <x-line :black="true" />
     @if ($view)
-
         <p class="line-clamp-1">
             {{ $blog->content }}
         </p>
@@ -57,7 +45,17 @@
         <x-line :black="true" />
 
     @endif
-    <div class="flex justify-end items-end gap-2 ">
+    <div class="flex justify-end items-end flex-wrap gap-2 ">
+
+        @auth
+            @if ($view)
+                <x-btn title="View" type="a" href="/blogs/{{$blog->id}}">
+                    <x-heroicon-s-eye class="w-5 h-5 text-white" />
+                </x-btn>
+            @endif
+            <x-favblog-btn :data="$blog->id" />
+        @endauth
+
         @can('update', $blog)
             <x-btn title="Edit" type="a" href="/blogs/{{$blog->id}}/edit">
                 <x-heroicon-s-pencil class="w-5 h-5 text-white-700" />

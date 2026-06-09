@@ -31,6 +31,7 @@
                         <x-btn title="View" type="a" href="/products/{{$item->product->id}}">
                             <x-heroicon-s-eye class="w-5 h-5 text-white" />
                         </x-btn>
+                        <x-cart-btn :data="$item->product->id" db="product_id" />
                         <x-btn title="Remove" :del="true" form="remove-wishlist-{{ $item->id }}" type="button">
                             <x-heroicon-s-trash class="w-5 h-5 text-white-700" />
                         </x-btn>

@@ -4,7 +4,7 @@
 
         <x-title>Favorite Blogs</x-title>
 
-        <div class="mt-7 flex gap-5 ">
+        <div class="mt-7 flex flex-wrap gap-5 ">
 
             @forelse($favoriteBlogs as $blog)
 

@@ -11,7 +11,7 @@
                 @endforelse
 
             </div>
-            <x-line />
+            <x-line :black="true" />
             <x-title>Featured Products</x-title>
             <div class="mt-7 flex flex-wrap gap-10">
                 @forelse ($featuredProduct as $product)

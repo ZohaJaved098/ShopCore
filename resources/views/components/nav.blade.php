@@ -5,7 +5,7 @@
         <x-dropdown :options="[
         ['label' => 'All Products', 'url' => 'products', 'solidIcon' => 'heroicon-s-cube', 'outlinedIcon' => 'heroicon-o-cube'],
         ['label' => 'Create new ', 'url' => 'products/create', 'solidIcon' => 'heroicon-s-pencil-square', 'outlinedIcon' => 'heroicon-o-pencil-square', 'can' => 'create-product'],
-        ['label' => 'Orders', 'url' => 'orders', 'solidIcon' => 'heroicon-s-receipt-percent', 'outlinedIcon' => 'heroicon-o-receipt-percent'],
+
     ]">
             @if (request()->is('products'))
                 <x-heroicon-s-shopping-bag class="text-emerald-900 hover:text-emerald-400 w-8 h-8 " />
@@ -71,6 +71,7 @@
             <x-dropdown :logout="true" :options="[
                 ['label' => 'Profile', 'url' => 'profile', 'solidIcon' => 'heroicon-s-user', 'outlinedIcon' => 'heroicon-o-user'],
                 ['label' => 'Dashboard', 'url' => 'dashboard', 'solidIcon' => 'heroicon-s-chart-bar', 'outlinedIcon' => 'heroicon-o-chart-bar', 'can' => 'access-dashboard'],
+                ['label' => 'My Orders', 'url' => 'orders', 'solidIcon' => 'heroicon-s-receipt-percent', 'outlinedIcon' => 'heroicon-o-receipt-percent'],
             ]">
                 <x-avatar :user="auth()->user()" :small="true" />
 
