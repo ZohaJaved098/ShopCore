@@ -18,7 +18,7 @@ A full-stack Laravel application with products, blogs, roles, authentication, an
 ### 1. Clone the repository
 
 ```bash
-git clone <https://github.com/ZohaJaved098/ShopCore.git>
+git clone https://github.com/ZohaJaved098/ShopCore.git
 cd shopcore
 ```
 
@@ -117,4 +117,4 @@ php artisan storage:link
 
 ## ❤️ Author
 
-Built with Laravel 🚀
+Built with Laravel By Zoha Javed
