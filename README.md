@@ -45,6 +45,27 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+### 3.5. Gmail SMTP Setup
+
+To use Gmail for sending emails:
+
+- Enable 2-Step Verification on your Google account
+- Go to Google Account → Security → App Passwords
+- Generate an App Password (Mail / Other device)
+- Use the generated 16-digit password in .env
+
+```
+MAIL_MAILER=smtp
+MAIL_SCHEME=null
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email
+MAIL_PASSWORD=your-16-digits-password-here
+MAIL_FROM_ADDRESS=your-email
+MAIL_FROM_NAME="${APP_NAME}"
+MAIL_ENCRYPTION=tls
+```
+
 ### 4. Run migrations + seed database
 
 ```bash
